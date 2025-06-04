@@ -1,1 +1,46 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Miss Malta RPPS Voting</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    .candidate { display: inline-block; margin: 20px; }
+    .candidate img { width: 200px; height: auto; border-radius: 12px; }
+    .vote-btn { margin-top: 10px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Vote for Miss Malta RPPS</h1>
+  <div class="candidates">
+    <div class="candidate">
+      <img src="candidate1.jpg" alt="Candidate 1">
+      <h2>Maria Ellul</h2>
+      <button class="vote-btn" onclick="vote('maria_ellul')">Vote</button>
+    </div>
+    <div class="candidate">
+      <img src="candidate2.jpg" alt="Candidate 2">
+      <h2>Beatrice Azzopardi</h2>
+      <button class="vote-btn" onclick="vote('beatrice_azzopardi')">Vote</button>
+    </div>
+    <!-- Add more candidates here -->
+  </div>
+
+  <script>
+    async function vote(candidateId) {
+      try {
+        await fetch('https://your-backend-endpoint.com/vote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ candidate: candidateId })
+        });
+        alert('Vote submitted! Thank you!');
+      } catch (err) {
+        alert('Error submitting vote.');
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
